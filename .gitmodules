@@ -1,0 +1,3 @@
+[submodule "gd-utils"]
+	path = gd-utils
+	url = https://github.com/dissipator/gd-utils
