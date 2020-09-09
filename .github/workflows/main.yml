@@ -37,7 +37,7 @@ jobs:
         sed -i '/scripts/a\    "preinstall": "npm install pm2 -g",' ${GITHUB_WORKSPACE}/gd-utils/package.json
         sed -i '/repository/a\  "engines": {\n    "node": "12.*"\n  },' ${GITHUB_WORKSPACE}/gd-utils/package.json
         sed -i '/dependencies/a\    "pm2": "^3.2.8",' ${GITHUB_WORKSPACE}/gd-utils/package.json
-        cat index.js | tee -a server.js
+        cat ${GITHUB_WORKSPACE}/gd-utils/index.js | tee -a ${GITHUB_WORKSPACE}/gd-utils/server.js
 
     - name: Install GD-utils Dependencies
       run: |
