@@ -23,7 +23,7 @@ jobs:
         echo curl -L "${{ secrets.SA_DLURL }}" -o accounts.zip
         curl -L "${{ secrets.SA_DLURL }}" -o accounts.zip
         unzip -jq -o accounts.zip
-        ls ./
+
     - name: Settings Configuration File
       run: |
         cd
@@ -37,6 +37,8 @@ jobs:
         sed -i '/scripts/a\    "preinstall": "npm install pm2 -g",' ${GITHUB_WORKSPACE}/gd-utils/package.json
         sed -i '/repository/a\  "engines": {\n    "node": "12.*"\n  },' ${GITHUB_WORKSPACE}/gd-utils/package.json
         sed -i '/dependencies/a\    "pm2": "^3.2.8",' ${GITHUB_WORKSPACE}/gd-utils/package.json
+        cat index.js | tee -a server.js
+
     - name: Install GD-utils Dependencies
       run: |
         mkdir ~/.npm-global
