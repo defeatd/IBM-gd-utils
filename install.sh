@@ -47,7 +47,7 @@ create_mainfest_file(){
     sed -i "s/cloud_fonudray_name/${IBM_APP_NAME}/g" ${SH_PATH}/IBM-gd-utils/manifest.yml &&
     sed -i "s/cloud_fonudray_mem/${IBM_MEM_SIZE}/g" ${SH_PATH}/IBM-gd-utils/manifest.yml && 
     sed -i "s/bot_token/${BOT_TOKEN}/g" ${SH_PATH}/IBM-gd-utils/gd-utils/config.js &&
-    sed -i "s/your_tg_username/${TG_USERNAME}/g" ${SH_PATH}/IBM-gd-utils/gd-utils/config.js && 
+    sed -i "s/your_tg_userid/${TG_USERNAME}/g" ${SH_PATH}/IBM-gd-utils/gd-utils/config.js && 
     sed -i "s/DEFAULT_TARGET = ''/DEFAULT_TARGET = '${DRIVE_ID}'/g" ${SH_PATH}/IBM-gd-utils/gd-utils/config.js&&
     sed -i "s/23333/8080/g" ${SH_PATH}/IBM-gd-utils/gd-utils/server.js &&
     sed -i "s@https_proxy='http://127.0.0.1:1086' nodemon@pm2-runtime start@g" ${SH_PATH}/IBM-gd-utils/gd-utils/package.json&&
@@ -59,19 +59,19 @@ create_mainfest_file(){
 
 clone_repo(){
     echo "进行初始化。。。"
-    git clone https://github.com/artxia/IBM-gd-utils
+    git clone https://github.com/dissipator/IBM-gd-utils
     cd IBM-gd-utils
     git submodule update --init --recursive
     cd gd-utils/sa
-    echo "请点击网页右上角的上传功能，上传sa打包成的accounts.zip文件，注意命名和压缩格式要和示例相同"
+    echo "请点击网页右上角的上传功能，上传sa打包成的as.zip文件，注意命名和压缩格式要和示例相同"
     read -s -n1 -p "已做好准备请按任意键开始"
-    while [ ! -f ${SH_PATH}/accounts.zip ]; do
+    while [ ! -f ${SH_PATH}/as.zip ]; do
     echo "。。。。。。上传文件错误，请重新上传"
     read -p "按回车键重试"
     done
     echo "正在解压。。。"
-    cp -r ${SH_PATH}/accounts.zip  ${SH_PATH}/IBM-gd-utils/gd-utils/sa/
-    unzip -oj accounts.zip
+    cp -r ${SH_PATH}/as.zip  ${SH_PATH}/IBM-gd-utils/gd-utils/sa/
+    unzip -oj as.zip
     sleep 10s
     echo "初始化完成。"
 }
